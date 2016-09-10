@@ -1,0 +1,13 @@
+- unless flash.empty?
+  - [:success, :info, :danger, :error, :input].each do |condition| 
+    - if flash[condition]
+      javascript:
+        $(function(){
+          swal(
+            { 
+              title: "#{sweet_alert_title(condition)}", 
+              text: "#{flash[condition]}", 
+              type: "#{condition}" 
+            }
+          );
+        })

@@ -1,0 +1,12 @@
+= simple_form_for(@user, html: {novalidate: false}) do |f|
+  = f.input :email, placeholder: 'E.g. example@arters.com'
+  = f.input :name, placeholder: 'E.g. Will'
+  = f.input :last_name, placeholder: 'E.g. Smith'
+  = f.input :username, placeholder: 'E.g. WillSmith68'
+  = f.input :password, placeholder: '*********'
+  = f.input :password_confirmation, placeholder: '*********'
+  = f.association :role, include_blank: false
+  div class="actions"
+    = link_to users_path, class: "btn btn-md btn-primary pull-left" do
+      | Back
+    = f.submit class: "btn btn-md btn-primary pull-right"

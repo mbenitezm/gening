@@ -1,0 +1,30 @@
+table class="table table-striped datatable"
+  thead
+    tr
+      th
+        |Name
+      th
+        |Username
+      th
+        |Email
+      th
+        |Role
+      th
+        |Actions
+  tbody
+    - @users.each do |user|
+      - if user == current_user
+        - next
+      tr
+        td
+          = user.full_name
+        td
+          = user.username
+        td
+          = user.email
+        td
+          = user.role.name
+        td style="width: 5%"
+          = link_to user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" do 
+            i.fa.fa-icon.fa-trash
+          
