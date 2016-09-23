@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   scope constraints: ->(req) { !req.session[:user_id].blank? } do
     # For every role
     get 'logout', to: 'sessions#destroy', as: :logout
+    resources :purchase_orders
 
     # Just if you are an admin
     scope constraints: ->(req) { req.session[:role] == 'admin' } do
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
     # Just if you are a regular_user
     scope constraints: ->(req) { req.session[:role] == 'regular_user' } do
     end
+
 
   end
 
