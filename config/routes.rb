@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   # For everyone
   # STATIC PAGES
   get 'contact_us', to: "welcome#contact_us", as: :contact_us
+  resources :announcements
 end
