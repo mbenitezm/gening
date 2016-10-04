@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   acts_as_paranoid
 
   belongs_to :role, inverse_of: :users
+  belongs_to :company, inverse_of: :users
 
   validates :role, presence: true
   validates :name, presence: true
