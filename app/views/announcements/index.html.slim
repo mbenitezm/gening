@@ -1,0 +1,22 @@
+h1
+  |Announcements
+.row
+  .col-md-12
+    - @object_collection.each do |a|
+      .panel.panel-default
+        .panel-heading
+          = l a.created_at, format: :short
+        .panel-body
+          h3 
+            | Destinatario
+          h4 = a.receiver
+          h3 
+            | Mensaje
+          h4 = a.message
+  = will_paginate @object_collection
+- if current_user.admin?
+  .row
+    .col-md-6.col-md-offset-6
+      .btn.btn-primary data-target="#new-announcement-modal" data-toggle="modal"
+        |Nuevo Anuncio
+  = render "new_announcement_modal", renderer: BootstrapPagination::Rails

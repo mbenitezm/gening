@@ -30,4 +30,14 @@ Rails.application.routes.draw do
   # STATIC PAGES
   get 'contact_us', to: "welcome#contact_us", as: :contact_us
   resources :announcements
+
+  resources :reports do
+    collection do
+      get 'invoices'
+      get 'deliveries'
+      get 'product_information'
+      get 'product_statistics'
+      get 'purchase_orders'
+    end
+  end
 end

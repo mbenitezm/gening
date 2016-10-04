@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831162453) do
+ActiveRecord::Schema.define(version: 20161004001453) do
+
+  create_table "announcements", force: :cascade do |t|
+    t.text     "message"
+    t.integer  "company_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "broadcast",  default: false
+  end
+
+  add_index "announcements", ["company_id"], name: "index_announcements_on_company_id"
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -33,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160831162453) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.datetime "deleted_at"
+    t.integer  "company_id"
   end
 
   add_index "users", ["deleted_at"], name: "index_users_on_deleted_at"
