@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: announcements
+#
+#  id         :integer          not null, primary key
+#  message    :text
+#  company_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  broadcast  :boolean          default(FALSE)
+#
+
 class Announcement < ActiveRecord::Base
   belongs_to :company, inverse_of: :announcements
 
