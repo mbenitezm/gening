@@ -14,4 +14,7 @@
 #
 
 class Order < ActiveRecord::Base 
+  def to_date(str)
+    Date.parse(str)
+  end
 end

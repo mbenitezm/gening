@@ -10,4 +10,7 @@
 #
 
 class BankDeposit < ActiveRecord::Base
+  def to_date(str)
+    Date.parse(str)
+  end
 end
