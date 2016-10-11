@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011130220) do
+ActiveRecord::Schema.define(version: 20161011140449) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "number"
@@ -20,13 +20,13 @@ ActiveRecord::Schema.define(version: 20161011130220) do
 
   create_table "announcements", force: :cascade do |t|
     t.text     "message"
-    t.integer  "company_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "broadcast",  default: false
+    t.integer  "customer_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "broadcast",   default: false
   end
 
-  add_index "announcements", ["company_id"], name: "index_announcements_on_company_id"
+  add_index "announcements", ["customer_id"], name: "index_announcements_on_customer_id"
 
   create_table "bank_accounts", force: :cascade do |t|
     t.string "number"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20161011130220) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.datetime "deleted_at"
-    t.integer  "company_id"
+    t.integer  "customer_id"
   end
 
   add_index "users", ["deleted_at"], name: "index_users_on_deleted_at"

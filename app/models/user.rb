@@ -13,14 +13,14 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  deleted_at    :datetime
-#  company_id    :integer
+#  customer_id   :integer
 #
 
 class User < ActiveRecord::Base
   acts_as_paranoid
 
   belongs_to :role, inverse_of: :users
-  belongs_to :company, inverse_of: :users
+  belongs_to :customer, inverse_of: :users
 
   validates :role, presence: true
   validates :name, presence: true

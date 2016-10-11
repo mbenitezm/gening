@@ -13,7 +13,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  deleted_at    :datetime
-#  company_id    :integer
+#  customer_id   :integer
 #
 
 class UsersController < ApplicationController
@@ -52,6 +52,6 @@ class UsersController < ApplicationController
   def object_params
     params.require(:user).permit(:email, :name, :last_name, :username,
                                  :password, :password_confirmation, :role_id,
-                                 :company_id)
+                                 :customer_id)
   end
 end

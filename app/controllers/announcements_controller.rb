@@ -2,12 +2,12 @@
 #
 # Table name: announcements
 #
-#  id         :integer          not null, primary key
-#  message    :text
-#  company_id :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  broadcast  :boolean          default(FALSE)
+#  id          :integer          not null, primary key
+#  message     :text
+#  customer_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  broadcast   :boolean          default(FALSE)
 #
 
 class AnnouncementsController < ApplicationController
@@ -31,11 +31,11 @@ class AnnouncementsController < ApplicationController
   private
 
   def object_params
-    params.require(:announcement).permit(:message, :broadcast, :company_id)
+    params.require(:announcement).permit(:message, :broadcast, :customer_id)
   end
 
   def filter_collection
     return Announcement.all if current_user.admin?
-    Announcement.for_company(current_user.company_id)
+    Announcement.for_customer(current_user.customer_id)
   end
 end
