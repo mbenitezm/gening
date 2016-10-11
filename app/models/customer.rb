@@ -12,15 +12,15 @@ class Customer < ActiveRecord::Base
   has_many :announcements, inverse_of: :customer
 
   def receivables
-    where(customer_number: number)
+    Receivable.where(customer_number: number)
   end
 
   def cash_receipts
-    where(customer_number: number)
+    CashReceipt.where(customer_number: number)
   end
 
   def orders
-    where(customer_number: number)
+    Order.where(customer_number: number)
   end
 
   def to_date(str)
