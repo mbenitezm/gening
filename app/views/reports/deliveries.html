@@ -1,0 +1,21 @@
+<h1>Deliveries</h1>
+<table class="table table-striped">                         
+  <tr>                          
+    <th>Order number</th>
+    <th>Customer number</th>
+    <th>Order date</th>
+    <th>Desired ship date</th>
+    <th>Last ship date</th>
+    <th>Promised date</th>
+  </tr>
+<% @data.each do |data| %>      
+  <tr>
+    <td><%= data.number %></td>  
+    <td><%= data.customer_number %></td>
+    <td><%= data.order_date %></td>  
+    <td><%= data.desired_ship_date %></td> 
+    <td><%= data.last_ship_date %></td>  
+    <td><%= data.promised_date%></td> 
+  </tr>
+<% end %>                        
+</table> 
