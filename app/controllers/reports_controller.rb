@@ -6,6 +6,14 @@ class ReportsController < ApplicationController
   end
 
   def deliveries
+    @data = filter_customer(Order)
+  end
+ 
+private
+ 
+  def filter_customer(klass)
+    return klass.all if current_user.admin?
+    klass.where(customer_number: current_user.customer.number)
   end
 
   def invoices
