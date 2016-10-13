@@ -6,7 +6,7 @@
   = f.input :password, placeholder: '*********'
   = f.input :password_confirmation, placeholder: '*********'
   = f.association :role, include_blank: false
-  = f.association :company, include_blank: false
+  = f.association :customer, include_blank: false
   div class="actions"
     = link_to users_path, class: "btn btn-md btn-primary pull-left" do
       | Back

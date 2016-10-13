@@ -11,17 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004001453) do
+ActiveRecord::Schema.define(version: 20161011140449) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "number"
+    t.string "description"
+  end
 
   create_table "announcements", force: :cascade do |t|
     t.text     "message"
-    t.integer  "company_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "broadcast",  default: false
+    t.integer  "customer_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "broadcast",   default: false
   end
 
-  add_index "announcements", ["company_id"], name: "index_announcements_on_company_id"
+  add_index "announcements", ["customer_id"], name: "index_announcements_on_customer_id"
+
+  create_table "bank_accounts", force: :cascade do |t|
+    t.string "number"
+    t.string "description"
+    t.string "gl_acccount"
+    t.string "bank_name"
+  end
+
+  create_table "bank_deposits", force: :cascade do |t|
+    t.string "bank_number"
+    t.string "description"
+    t.string "deposit_date"
+    t.float  "amout"
+  end
+
+  add_index "bank_deposits", ["bank_number"], name: "index_bank_deposits_on_bank_number"
+
+  create_table "cash_receipts", force: :cascade do |t|
+    t.string  "customer_number"
+    t.float   "amount"
+    t.string  "check_date"
+    t.string  "created_date"
+    t.integer "deposit_id"
+  end
+
+  add_index "cash_receipts", ["customer_number"], name: "index_cash_receipts_on_customer_number"
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +60,42 @@ ActiveRecord::Schema.define(version: 20161004001453) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "number"
+    t.string "name"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "number"
+    t.string "customer_number"
+    t.string "order_date"
+    t.string "desired_ship_date"
+    t.string "last_ship_date"
+    t.string "promised_date"
+    t.float  "total_amount_ordered"
+    t.float  "total_amount_shipped"
+  end
+
+  add_index "orders", ["customer_number"], name: "index_orders_on_customer_number"
+
+  create_table "parts", force: :cascade do |t|
+    t.string "number"
+    t.string "description"
+    t.string "part_type"
+    t.float  "weight"
+  end
+
+  create_table "receivables", force: :cascade do |t|
+    t.string "invoice_id"
+    t.string "customer_number"
+    t.string "invoice_date"
+    t.float  "total_amount_receivable"
+    t.float  "paid_amount"
+    t.string "terms_description"
+  end
+
+  add_index "receivables", ["customer_number"], name: "index_receivables_on_customer_number"
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -50,7 +117,7 @@ ActiveRecord::Schema.define(version: 20161004001453) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.datetime "deleted_at"
-    t.integer  "company_id"
+    t.integer  "customer_id"
   end
 
   add_index "users", ["deleted_at"], name: "index_users_on_deleted_at"

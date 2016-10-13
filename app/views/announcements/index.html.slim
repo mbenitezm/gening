@@ -7,11 +7,12 @@ h1
         .panel-heading
           = l a.created_at, format: :short
         .panel-body
-          h3 
-            | Destinatario
-          h4 = a.receiver
-          h3 
-            | Mensaje
+          - if current_user.admin?
+            h4 
+              | Destinatario
+            h4 = a.receiver
+          h4 
+            | Mensaje:
           h4 = a.message
   = will_paginate @object_collection
 - if current_user.admin?
@@ -20,3 +21,4 @@ h1
       .btn.btn-primary data-target="#new-announcement-modal" data-toggle="modal"
         |Nuevo Anuncio
   = render "new_announcement_modal", renderer: BootstrapPagination::Rails
+  
