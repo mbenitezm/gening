@@ -13,7 +13,7 @@ private
  
   def filter_customer(klass)
     return klass.all if current_user.admin?
-    klass.where(customer_number: current_user.customer.number)
+    klass.where(customer_number: current_customer.number)
   end
 
   def invoices
