@@ -8,6 +8,10 @@ class ReportsController < ApplicationController
   def deliveries
     @data = filter_customer(Order)
   end
+
+  def invoices
+    @data = filter_customer(Receivable)
+  end
  
 private
  
@@ -16,8 +20,7 @@ private
     klass.where(customer_number: current_user.customer.number)
   end
 
-  def invoices
-  end
+
 
   def product_information
   end
