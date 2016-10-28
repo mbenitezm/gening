@@ -24,8 +24,8 @@ class Customer < ActiveRecord::Base
   end
 
   def order_details
-    orders = current_customer.orders
-    @order_details = details_for_orders(orders)
+    orders = self.orders
+    details_for_orders(orders)
   end
 
   def to_date(str)
@@ -33,7 +33,7 @@ class Customer < ActiveRecord::Base
   end
 
   private
-  def details_for_orders
+  def details_for_orders(orders)
     order_details_all = OrderDetail.select(
       :all,
       select: "part_number, order_number, sum(order_details_all.amount)",
