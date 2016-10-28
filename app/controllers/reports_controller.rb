@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   def product_statistics
-    @order_details = current_customer.order_details
+    @order_details = current_customer.product_statistics
   end
 
   def purchase_orders
