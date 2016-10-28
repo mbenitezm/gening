@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       get 'product_information'
       get 'product_statistics'
       get 'purchase_orders'
+      get 'product_summary'
     end
   end
 end

@@ -4,9 +4,19 @@
     <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
     <script type="text/javascript">
+      $.ajax({
+        type: "GET",
+        url: "/reports/product_summary",
+        success: function(response){
+          console.log(response.product_statistics);
+        },
+        error: function(data){
+          console.log("error");
+        },
+      });
 
         window.onload = function () {
-            var customers = $('#customerProducts').attr("data-customers");
+            var customers = null
             console.log(JSON.parse(customers));
             var chart = new CanvasJS.Chart("chartContainer", {
                 title:{
@@ -31,7 +41,7 @@
     </script>
 </head>
 <body>
-<div id="customerProducts" data-customers="<%= { a=> 'algo', b=> 'otro algo'} %>"></div>
+<div id="customerProducts"</div>
 <h1> Product Statistics </h1>
 <div class="dropdown">
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select product

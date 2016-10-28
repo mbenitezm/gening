@@ -27,4 +27,13 @@ class Customer < ActiveRecord::Base
   def to_date(str)
     Date.parse(str)
   end
+
+  def product_info
+    ProductStatistic.connection.select_all(
+      "SELECT part_number, SUM(amount)
+      FROM product_statistics
+      WHERE customer_id = #{id}
+      GROUP BY part_number"
+    ).rows
+  end
 end
