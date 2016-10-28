@@ -59,8 +59,23 @@ namespace :db do
 
     puts "receivable good"
 
+    #OrderDetails
+    CSV.foreach("#{Rails.root}/lib/csv/PUBLIC_CUST_ORDER_LINE.csv", :encoding => 'windows-1251:utf-8', :headers => true ) do |row|
+      OrderDetail.create(part_number: row['PART_ID'], order_number: row['CUST_ORDER_ID'], amount: row['ORDER_QTY'])
+    end
+
+    puts "OrderDetail good"
 
 
 
+  end
+  desc "Populate DB from CSV to Models"
+  task :orderdetail => :environment do
+    #OrderDetails
+    CSV.foreach("#{Rails.root}/lib/csv/PUBLIC_CUST_ORDER_LINE.csv", :encoding => 'windows-1251:utf-8', :headers => true ) do |row|
+      OrderDetail.create(part_number: row['PART_ID'], order_number: row['CUST_ORDER_ID'], amount: row['ORDER_QTY'])
+    end
+
+    puts "OrderDetail good"
   end
 end
