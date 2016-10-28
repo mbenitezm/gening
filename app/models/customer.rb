@@ -30,10 +30,10 @@ class Customer < ActiveRecord::Base
 
   def product_info
     ProductStatistic.connection.select_all(
-      "SELECT part_number, SUM(amount)
+      "SELECT part_description, SUM(amount)
       FROM product_statistics
       WHERE customer_id = #{id}
-      GROUP BY part_number"
+      GROUP BY part_description"
     ).rows
   end
 end
