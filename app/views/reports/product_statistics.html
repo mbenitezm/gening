@@ -4,39 +4,46 @@
     <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
     <script type="text/javascript">
-      $.ajax({
-        type: "GET",
-        url: "/reports/product_summary",
-        success: function(response){
-          console.log(response.product_statistics);
-        },
-        error: function(data){
-          console.log("error");
-        },
-      });
 
         window.onload = function () {
-            var customers = null
-            console.log(JSON.parse(customers));
-            var chart = new CanvasJS.Chart("chartContainer", {
-                title:{
-                    text: "Products consumed by client"
-                },
-                data: [
-                    {
-                        // Change type to "doughnut", "line", "splineArea", etc.
-                        type: "column",
-                        dataPoints: [
-                            { label: "apple",  y: 10  },
-                            { label: "orange", y: 15  },
-                            { label: "banana", y: 25  },
-                            { label: "mango",  y: 30  },
-                            { label: "grape",  y: 28  }
+
+            function toCanvasObj(arr){
+                var canvasObj = {};
+                var output = [];
+                for(var i = 0; i < arr.length; ++i){
+                    canvasObj = {};
+                    canvasObj["label"] = arr[i][0];
+                    canvasObj["y"] = arr[i][1];
+                    output.push(canvasObj);
+                }
+                return output;
+            }
+            var newObj = {};
+            $.ajax({
+                type: "GET",
+                url: "/reports/product_summary",
+                success: function(response){
+                    newObj = toCanvasObj(response.product_statistics);
+//                    console.log("NEW OBJ");
+//                    console.log(newObj);
+                    var chart = new CanvasJS.Chart("chartContainer", {
+                        title:{
+                            text: "Products consumed by client"
+                        },
+                        data: [
+                            {
+                                type: "pie",
+                                dataPoints: newObj
+                            }
                         ]
-                    }
-                ]
+                    });
+                    chart.render();
+                },
+                error: function(data){
+                    console.log("error");
+                }
             });
-            chart.render();
+
         }
     </script>
 </head>
