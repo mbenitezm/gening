@@ -25,7 +25,7 @@ class Customer < ActiveRecord::Base
 
   def order_details
     orders = current_customer.orders
-    @order_details = details_for_orders(orders)
+    details_for_orders(orders)
   end
 
   def to_date(str)
