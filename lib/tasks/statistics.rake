@@ -27,7 +27,8 @@ namespace :statistics do
 
   def create_product_statistics(order_details, customer)
     order_details.each do |od|
-      ProductStatistic.create(customer_id: customer.id, part_number: od[1], amount: od[2])
+        ProductStatistic.create(customer_id: customer.id, part_number: od[1],
+                              amount: od[2], part_description: Part.find_by(number: od[1]).description)
     end
   end
 end

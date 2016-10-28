@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028043618) do
+ActiveRecord::Schema.define(version: 20161028132201) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "number"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20161028043618) do
     t.integer "customer_id"
     t.string  "part_number"
     t.float   "amount"
+    t.string  "part_description"
   end
 
   add_index "product_statistics", ["customer_id"], name: "index_product_statistics_on_customer_id"
