@@ -6,7 +6,6 @@
     <script type="text/javascript">
 
         window.onload = function () {
-
             var customers = $('#customerProducts').attr("data-customers");
             console.log(JSON.parse(customers));
             var chart = new CanvasJS.Chart("chartContainer", {
@@ -32,7 +31,7 @@
     </script>
 </head>
 <body>
-<div id="customerProducts" data-customers="<%= current_customer.order_details %>"></div>
+<div id="customerProducts" data-customers="<%= { a=> 'algo', b=> 'otro algo'} %>"></div>
 <h1> Product Statistics </h1>
 <div class="dropdown">
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select product
