@@ -6,8 +6,6 @@
     <script type="text/javascript">
 
         window.onload = function () {
-            var customers = $('#customerProducts');
-            console.log(JSON.parse(customers));
             var chart = new CanvasJS.Chart("chartContainer", {
                 title:{
                     text: "Products consumed by client"
@@ -31,7 +29,7 @@
     </script>
 </head>
 <body>
-<div id="customerProducts" data-customers="<%= current_customer.order_details.to_json %>"></div>
+<div id="customerProducts" data-customers="<%= current_customer.order_details %>"></div>
 <h1> Product Statistics </h1>
 <div class="dropdown">
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select product
