@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011140449) do
+ActiveRecord::Schema.define(version: 20161020170211) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "number"
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(version: 20161011140449) do
     t.string "number"
     t.string "name"
   end
+
+  create_table "order_details", force: :cascade do |t|
+    t.string "part_number"
+    t.string "order_number"
+    t.float  "amount"
+  end
+
+  add_index "order_details", ["order_number"], name: "index_order_details_on_order_number"
+  add_index "order_details", ["part_number"], name: "index_order_details_on_part_number"
 
   create_table "orders", force: :cascade do |t|
     t.string "number"
