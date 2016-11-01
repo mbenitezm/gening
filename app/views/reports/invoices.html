@@ -1,5 +1,7 @@
 <h1>Invoice</h1>
-<table class="table table-striped">                         
+<%= will_paginate @data %>
+<table class="table table-striped">   
+  <thead>                      
   <tr>                          
     <th>Invoice No.</th>
     <th>Customer number</th>
@@ -7,6 +9,8 @@
     <th>Total amount</th>
     <th>Paid amount</th>
   </tr>
+  </thead>
+  <tbody>
 <% @data.each do |data| %>      
   <tr>
     <td><%= data.invoice_id %></td>  
@@ -15,5 +19,7 @@
     <td><%= data.total_amount_receivable %></td> 
     <td><%= data.paid_amount %></td>  
   </tr>
-<% end %>                        
+<% end %>   
+</tbody>                     
 </table> 
+<%= will_paginate @data %>
