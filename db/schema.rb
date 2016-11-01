@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020170211) do
+ActiveRecord::Schema.define(version: 20161028132201) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "number"
@@ -94,6 +94,16 @@ ActiveRecord::Schema.define(version: 20161020170211) do
     t.string "part_type"
     t.float  "weight"
   end
+
+  create_table "product_statistics", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string  "part_number"
+    t.float   "amount"
+    t.string  "part_description"
+  end
+
+  add_index "product_statistics", ["customer_id"], name: "index_product_statistics_on_customer_id"
+  add_index "product_statistics", ["part_number"], name: "index_product_statistics_on_part_number"
 
   create_table "receivables", force: :cascade do |t|
     t.string "invoice_id"

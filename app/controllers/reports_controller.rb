@@ -1,6 +1,10 @@
 class ReportsController < ApplicationController
   def product_statistics
-    @order_details = current_user.order_details
+  end
+
+  def product_summary
+    product_statistics = current_customer.product_info
+    render json: { product_statistics: product_statistics}, status: 200
   end
 
   def purchase_orders
