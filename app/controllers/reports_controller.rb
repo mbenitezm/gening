@@ -17,6 +17,14 @@ class ReportsController < ApplicationController
   def invoices
     @data = filter_customer(Receivable)
   end
+
+  def date_statistics
+    countOnTime = 1
+    countDelayed = 0
+
+
+    render json: { onTime: countOnTime, delayed: countDelayed}, status:200
+  end
  
 private
  

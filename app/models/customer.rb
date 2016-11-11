@@ -36,4 +36,8 @@ class Customer < ActiveRecord::Base
       GROUP BY part_description"
     ).rows
   end
+
+  def dates_info
+    Order.where(customer_number: number).where.not(promised_date: nil)
+  end
 end
