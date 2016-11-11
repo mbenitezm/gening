@@ -17,6 +17,15 @@ class ReportsController < ApplicationController
   def invoices
     @data = filter_customer(Receivable)
   end
+
+  def product_catalog
+    @products = current_customer.product_info
+  end
+
+  def product_documents
+    part = Part.find_by(description: params[:description])
+    @documents = part.documents
+  end
  
 private
  

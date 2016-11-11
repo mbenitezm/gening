@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   # STATIC PAGES
   get 'contact_us', to: "welcome#contact_us", as: :contact_us
   resources :announcements
-
+  resources :documents
+  post 'create_document', to: 'documents#create', as: :create_document
   resources :reports do
     collection do
       get 'invoices'
@@ -39,6 +40,8 @@ Rails.application.routes.draw do
       get 'product_statistics'
       get 'purchase_orders'
       get 'product_summary'
+      get 'product_catalog'
+      get 'product_documents'
     end
   end
 end

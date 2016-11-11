@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028132201) do
+ActiveRecord::Schema.define(version: 20161111012400) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "number"
@@ -64,6 +64,15 @@ ActiveRecord::Schema.define(version: 20161028132201) do
   create_table "customers", force: :cascade do |t|
     t.string "number"
     t.string "name"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.integer  "part_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "description"
   end
 
   create_table "order_details", force: :cascade do |t|
