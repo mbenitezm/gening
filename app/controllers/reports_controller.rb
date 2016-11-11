@@ -29,8 +29,16 @@ class ReportsController < ApplicationController
         countOnTime += 1
       end
     end
-
     render json: { onTime: countOnTime, delayed: countDelayed}, status:200
+  end
+
+  def product_catalog
+    @products = current_customer.product_info
+  end
+
+  def product_documents
+    part = Part.find_by(description: params[:description])
+    @documents = part.documents
   end
  
 private

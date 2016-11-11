@@ -10,7 +10,6 @@
                 type: "GET",
                 url: "/reports/date_statistics",
                 success: function(response){
-                  console.log(response.onTime);
                     var chart = new CanvasJS.Chart("chartContainer", {
                         title:{
                             text: "Dates of delivered products"

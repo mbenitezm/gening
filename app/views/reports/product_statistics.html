@@ -5,7 +5,7 @@
 
     <script type="text/javascript">
 
-        window.onload = function () {
+        $(document).ready(function(){
 
             function toCanvasObj(arr){
                 var canvasObj = {};
@@ -38,13 +38,15 @@
                         ]
                     });
                     chart.render();
+
                 },
                 error: function(data){
                     console.log("error");
                 }
             });
 
-        }
+
+        });
     </script>
 </head>
 <body>
