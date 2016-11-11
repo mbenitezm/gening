@@ -19,9 +19,16 @@ class ReportsController < ApplicationController
   end
 
   def date_statistics
-    countOnTime = 1
+    countOnTime = 0
     countDelayed = 0
-
+    date_statistics = current_customer.dates_info
+    for i in date_statistics
+      if i.to_date(i.promised_date) < i.to_date(i.last_ship_date)
+        countDelayed += 1
+      else
+        countOnTime += 1
+      end
+    end
 
     render json: { onTime: countOnTime, delayed: countDelayed}, status:200
   end
