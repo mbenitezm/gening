@@ -1,4 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <script type="text/javascript">
+
+        window.onload = function () {
+            $.ajax({
+                type: "GET",
+                url: "/reports/date_statistics",
+                success: function(response){
+                    var chart = new CanvasJS.Chart("chartContainer", {
+                        title:{
+                            text: "Dates of delivered products"
+                        },
+                        data: [
+                            {
+                                type: "pie",
+                                indexLabel: "#percent%",
+                                dataPoints: [
+                                  { label: "On time delivered orders",  y: response.onTime  },
+                                  { label: "Delayed delivered orders", y: response.delayed  },
+                                ]
+                            }
+                        ]
+                    });
+                    chart.render();
+                },
+                error: function(data){
+                    console.log("error");
+                }
+            });
+
+        }
+    </script>
+</head>
+<body>
 <h1>Deliveries</h1>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
 <table class="table table-striped datatable">     
 <thead>                    
   <tr>                          
@@ -20,6 +59,7 @@
     <td><%= data.last_ship_date %></td>  
     <td><%= data.promised_date%></td> 
   </tr>
-<% end %> 
-</tbody>                       
+<% end %>                        
 </table> 
+</body>
+</html>
