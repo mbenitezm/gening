@@ -45,7 +45,7 @@ private
  
   def filter_customer(klass)
     return klass.all.paginate(page: params[:page], per_page:50) if current_user.admin?
-    klass.where(customer_number: current_user.customer.number).paginate(page: params[:page], per_page:50)
+    klass.where(customer_number: current_user.customer.number)
   end
 
 

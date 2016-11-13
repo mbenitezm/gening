@@ -38,6 +38,6 @@ class Customer < ActiveRecord::Base
   end
 
   def dates_info
-    Order.where(customer_number: number).where.not(promised_date: nil).where.not(last_shipp_date: nil)
+    Order.where(customer_number: number).where.not(promised_date: nil).where.not(last_ship_date: nil)
   end
 end
