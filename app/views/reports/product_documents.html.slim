@@ -13,7 +13,7 @@ h1 Documentos
       - @documents.each do |document|   
         tr
            td = document.description
-           td = link_to 'Descargar', image_tag(document.file.url), class:'btn btn-primary btn-xs'
+           td = link_to 'Descargar', document.file.url, class:'btn btn-primary btn-xs'
            - if current_user.admin?
               td
                 = link_to 'Eliminar', document_path(document), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: '¿Estas seguro?' }
