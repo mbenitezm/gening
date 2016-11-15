@@ -5,22 +5,22 @@
 
     <script type="text/javascript">
 
-        window.onload = function () {
+        $(document).ready(function() {
             $.ajax({
                 type: "GET",
                 url: "/reports/date_statistics",
                 success: function(response){
                     var chart = new CanvasJS.Chart("chartContainer", {
                         title:{
-                            text: "Dates of delivered products"
+                            text: "Fechas de entregas"
                         },
                         data: [
                             {
                                 type: "pie",
                                 indexLabel: "#percent%",
                                 dataPoints: [
-                                  { label: "On time delivered orders",  y: response.onTime  },
-                                  { label: "Delayed delivered orders", y: response.delayed  },
+                                  { label: "Órdenes entregadas a tiempo",  y: response.onTime  },
+                                  { label: "Órdenes atrasadas", y: response.delayed  },
                                 ]
                             }
                         ]
@@ -32,21 +32,21 @@
                 }
             });
 
-        }
+        });
     </script>
 </head>
 <body>
-<h1>Deliveries</h1>
+<h1>Entregas</h1>
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 <table class="table table-striped datatable">     
 <thead>                    
   <tr>                          
-    <th>Order number</th>
-    <th>Customer number</th>
-    <th>Order date</th>
-    <th>Desired ship date</th>
-    <th>Last ship date</th>
-    <th>Promised date</th>
+    <th>Número de orden</th>
+    <th>Número de cliente</th>
+    <th>Fecha de órden</th>
+    <th>Fecha de entrega deseada</th>
+    <th>Última fecha de entrega</th>
+    <th>Fecha de entrega prometida</th>
   </tr>
 </thead>
 <tbody>
