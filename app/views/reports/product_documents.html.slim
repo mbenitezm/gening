@@ -7,12 +7,14 @@ h1 Documentos
     table.table.table-striped                     
       tr                          
         th Documento
+        th Tipo de archivo
         th
         - if current_user.admin?
           th
       - @documents.each do |document|   
         tr
            td = document.description
+           td = document.file_file_name.split(".").last
            td = link_to 'Descargar', document.file.url, class:'btn btn-primary btn-xs'
            - if current_user.admin?
               td
