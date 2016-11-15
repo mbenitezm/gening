@@ -10,4 +10,5 @@
 #
 
 class Part < ActiveRecord::Base
+  has_many :documents, inverse_of: :part
 end

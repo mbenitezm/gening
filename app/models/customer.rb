@@ -10,6 +10,7 @@
 class Customer < ActiveRecord::Base
   has_many :users, inverse_of: :customer
   has_many :announcements, inverse_of: :customer
+  has_many :product_statistics, inverse_of: :customer
 
   def receivables
     Receivable.where(customer_number: number)
@@ -23,27 +24,20 @@ class Customer < ActiveRecord::Base
     Order.where(customer_number: number)
   end
 
-  def order_details
-    orders = self.orders
-    details_for_orders(orders)
-  end
-
   def to_date(str)
     Date.parse(str)
   end
 
-  private
-  def details_for_orders(orders)
-    order_details_all = OrderDetail.select(
-      :all,
-      select: "part_number, order_number, sum(order_details_all.amount)",
-      group: "part_number, order_number"
-    )
-    order_details = []
-    orders.each do |order|
-      od = order_details_all.where(order_number: order.number)
-      order_details << od if od
-    end
-    order_details
+  def product_info
+    ProductStatistic.connection.select_all(
+      "SELECT part_description, SUM(amount)
+      FROM product_statistics
+      WHERE customer_id = #{id}
+      GROUP BY part_description"
+    ).rows
+  end
+
+  def dates_info
+    Order.where(customer_number: number).where.not(promised_date: nil).where.not(last_ship_date: nil)
   end
 end

@@ -1,0 +1,13 @@
+.row
+  .col-md-6
+    h1.page-title
+      | Nuevo documento
+.row
+  .col-md-12
+    = simple_form_for(@document, url: create_document_path(description: params[:description]),html: {novalidate: false}) do |f|
+      = f.input :description, label: 'Descripción'
+      = f.input :file, as: :file, label: 'Archivo'
+      div class="actions"
+        = link_to product_catalog_reports_path, class: "btn btn-md btn-primary pull-left" do
+          | Back
+        = f.submit class: "btn btn-md btn-primary pull-right"
