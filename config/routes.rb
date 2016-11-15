@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       get 'date_statistics'
       get 'product_catalog'
       get 'product_documents'
+      get 'invoices_json'
     end
   end
 end

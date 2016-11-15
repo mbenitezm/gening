@@ -18,6 +18,11 @@ class ReportsController < ApplicationController
     @data = filter_customer(Receivable)
   end
 
+  def invoices_json
+    invoices_json = filter_customer(Receivable)
+    render json: { invoices_json: invoices_json }, status: 200
+  end
+
   def date_statistics
     countOnTime = 0
     countDelayed = 0
@@ -45,10 +50,13 @@ private
  
   def filter_customer(klass)
     return klass.all.paginate(page: params[:page], per_page:50) if current_user.admin?
-    klass.where(customer_number: current_user.customer.number).paginate(page: params[:page], per_page:50)
+    klass.where(customer_number: current_user.customer.number)
   end
 
-
+  def filter_customerJSON(klass)
+    return klass.all if current_user.admin?
+    klass.where(customer_number: current_customer.number)
+  end
 
   def product_information
   end
