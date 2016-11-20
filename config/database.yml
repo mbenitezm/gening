@@ -15,4 +15,10 @@ development:
 
 
 
-
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: gening
+  pool: 5
+  username: ricky
+  password:
