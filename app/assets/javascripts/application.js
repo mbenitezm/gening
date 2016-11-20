@@ -13,18 +13,19 @@
 //= require jquery
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/2/jquery.dataTables.bootstrap
 //= require twitter/bootstrap
 //= require_tree .
 //= require turbolinks
 
 function initialize_datatables(){
   $('.datatable').DataTable({
-    "aoColumnDefs" : [ {"bSortable": false, "aTargets" : [ "no-sort" ] } ]
+    "language": {
+        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+    }
   });
 };
 
-$(function(){
-  $('.selectize').selectize();
+$(document).ready(function() {
+   //$('.selectize').selectize();
   initialize_datatables();
-});
+} );

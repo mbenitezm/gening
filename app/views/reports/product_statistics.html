@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            function toCanvasObj(arr){
+                var canvasObj = {};
+                var output = [];
+                for(var i = 0; i < arr.length; ++i){
+                    canvasObj = {};
+                    canvasObj["label"] = arr[i][0];
+                    canvasObj["y"] = arr[i][1];
+                    output.push(canvasObj);
+                }
+                return output;
+            }
+            var newObj = {};
+            $.ajax({
+                type: "GET",
+                url: "/reports/product_summary",
+                success: function(response){
+                    newObj = toCanvasObj(response.product_statistics);
+//                    console.log("NEW OBJ");
+                   console.log(newObj);
+                    var chart = new CanvasJS.Chart("chartContainer", {
+                        title:{
+                            text: "Productos comprados por cliente"
+                        },
+                        data: [
+                            {
+                                type: "pie",
+                                dataPoints: newObj
+                            }
+                        ]
+                    });
+                    chart.render();
+
+                },
+                error: function(data){
+                    console.log("error");
+                }
+            });
+
+
+        });
+    </script>
+</head>
+<body>
+<div id="customerProducts"</div>
+<h1> Estadísticas de productos </h1>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+</body>
+</html>

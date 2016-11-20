@@ -1,0 +1,18 @@
+#new-announcement-modal.modal.fade tabindex="-1" role="dialog"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-label="Close" &times;
+        h4.modal-title Nuevo anuncio
+      = simple_form_for Announcement.new do |f|
+        .modal-body
+          .row
+            .col-md-12
+              = f.association :customer
+            .col-md-12
+              = f.input :broadcast
+            .col-md-12
+              =f.input :message
+        .modal-footer
+          button.btn.btn-default.pull-left type="button" data-dismiss="modal" Regresar
+          = f.submit "Enviar", class: "btn btn-success"
