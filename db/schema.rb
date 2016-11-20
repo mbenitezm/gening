@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20161111012400) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "accounts", force: :cascade do |t|
     t.string "number"
     t.string "description"
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 20161111012400) do
     t.boolean  "broadcast",   default: false
   end
 
-  add_index "announcements", ["customer_id"], name: "index_announcements_on_customer_id"
+  add_index "announcements", ["customer_id"], name: "index_announcements_on_customer_id", using: :btree
 
   create_table "bank_accounts", force: :cascade do |t|
     t.string "number"
@@ -42,7 +45,7 @@ ActiveRecord::Schema.define(version: 20161111012400) do
     t.float  "amout"
   end
 
-  add_index "bank_deposits", ["bank_number"], name: "index_bank_deposits_on_bank_number"
+  add_index "bank_deposits", ["bank_number"], name: "index_bank_deposits_on_bank_number", using: :btree
 
   create_table "cash_receipts", force: :cascade do |t|
     t.string  "customer_number"
@@ -52,7 +55,7 @@ ActiveRecord::Schema.define(version: 20161111012400) do
     t.integer "deposit_id"
   end
 
-  add_index "cash_receipts", ["customer_number"], name: "index_cash_receipts_on_customer_number"
+  add_index "cash_receipts", ["customer_number"], name: "index_cash_receipts_on_customer_number", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -81,8 +84,8 @@ ActiveRecord::Schema.define(version: 20161111012400) do
     t.float  "amount"
   end
 
-  add_index "order_details", ["order_number"], name: "index_order_details_on_order_number"
-  add_index "order_details", ["part_number"], name: "index_order_details_on_part_number"
+  add_index "order_details", ["order_number"], name: "index_order_details_on_order_number", using: :btree
+  add_index "order_details", ["part_number"], name: "index_order_details_on_part_number", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string "number"
@@ -95,7 +98,7 @@ ActiveRecord::Schema.define(version: 20161111012400) do
     t.float  "total_amount_shipped"
   end
 
-  add_index "orders", ["customer_number"], name: "index_orders_on_customer_number"
+  add_index "orders", ["customer_number"], name: "index_orders_on_customer_number", using: :btree
 
   create_table "parts", force: :cascade do |t|
     t.string "number"
@@ -111,8 +114,8 @@ ActiveRecord::Schema.define(version: 20161111012400) do
     t.string  "part_description"
   end
 
-  add_index "product_statistics", ["customer_id"], name: "index_product_statistics_on_customer_id"
-  add_index "product_statistics", ["part_number"], name: "index_product_statistics_on_part_number"
+  add_index "product_statistics", ["customer_id"], name: "index_product_statistics_on_customer_id", using: :btree
+  add_index "product_statistics", ["part_number"], name: "index_product_statistics_on_part_number", using: :btree
 
   create_table "receivables", force: :cascade do |t|
     t.string "invoice_id"
@@ -123,7 +126,7 @@ ActiveRecord::Schema.define(version: 20161111012400) do
     t.string "terms_description"
   end
 
-  add_index "receivables", ["customer_number"], name: "index_receivables_on_customer_number"
+  add_index "receivables", ["customer_number"], name: "index_receivables_on_customer_number", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -132,7 +135,7 @@ ActiveRecord::Schema.define(version: 20161111012400) do
     t.datetime "deleted_at"
   end
 
-  add_index "roles", ["deleted_at"], name: "index_roles_on_deleted_at"
+  add_index "roles", ["deleted_at"], name: "index_roles_on_deleted_at", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",         limit: 255
@@ -148,7 +151,7 @@ ActiveRecord::Schema.define(version: 20161111012400) do
     t.integer  "customer_id"
   end
 
-  add_index "users", ["deleted_at"], name: "index_users_on_deleted_at"
-  add_index "users", ["role_id"], name: "index_users_on_role_id"
+  add_index "users", ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
+  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
 end
