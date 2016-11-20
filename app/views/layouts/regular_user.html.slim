@@ -12,7 +12,7 @@ html
       nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0"
         div class="navbar-header"
           button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"
-            span class="sr-only">RETOS
+            span class="sr-only">
               | Toggle navigation
             span class="icon-bar"
             span class="icon-bar"
@@ -32,36 +32,26 @@ html
         div class="navbar-default sidebar" role="navigation"
           div class="sidebar-nav navbar-collapse"
             ul class="nav" id="side-menu"
-              li class="sidebar-search"
-                div class="input-group custom-search-form"
-                  input type="text" class="form-control" placeholder="Search..."
-                  span class="input-group-btn"
-                    button class="btn btn-default" type="button"
-                      i class="fa fa-search"
               li
-                a href="#"
+                = link_to announcements_path do
                   i class="fa fa-feed fa-fw"
                   | Anuncios
               li
-                a href="#"
+                = link_to product_statistics_reports_path do
                   i class="fa fa-area-chart fa-fw"
                   | Estadística de productos
               li
-                a href="#"
-                  i class="fa fa-shopping-cart fa-fw"
-                  | Órdenes de compra
-              li
-                a href="#"
+                = link_to deliveries_reports_path do
                   i class="fa fa-truck fa-fw"
                   | Entregas
               li
-                a href="#"
+                = link_to invoices_reports_path do
                   i class="fa fa-clipboard fa-fw"
                   | Facturas
               li
-                a href="#"
+                = link_to product_catalog_reports_path do
                   i class="fa fa-info-circle fa-fw"
-                  | Información de productos
+                  | Catálogo de productos
       #page-wrapper.container
         .col-md-11
           = yield

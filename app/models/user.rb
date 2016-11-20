@@ -1,7 +1,26 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id            :integer          not null, primary key
+#  email         :string(255)
+#  name          :string(255)
+#  last_name     :string(255)
+#  username      :string(255)
+#  password_hash :string(255)
+#  password_salt :string(255)
+#  role_id       :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  deleted_at    :datetime
+#  customer_id   :integer
+#
+
 class User < ActiveRecord::Base
   acts_as_paranoid
 
   belongs_to :role, inverse_of: :users
+  belongs_to :customer, inverse_of: :users
 
   validates :role, presence: true
   validates :name, presence: true

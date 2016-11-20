@@ -8,9 +8,10 @@ table class="table table-striped datatable"
       th
         |Email
       th
+        |Customer
+      th
         |Role
       th
-        |Actions
   tbody
     - @users.each do |user|
       - if user == current_user
@@ -22,6 +23,8 @@ table class="table table-striped datatable"
           = user.username
         td
           = user.email
+        td
+          = user.customer.name
         td
           = user.role.name
         td style="width: 5%"
