@@ -15,7 +15,7 @@
 //= require dataTables/jquery.dataTables
 //= require twitter/bootstrap
 //= require_tree .
-//= require turbolinks
+
 
 function initialize_datatables(){
   $('.datatable').DataTable({
