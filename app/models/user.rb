@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
 
   before_create :encrypt
 
+  after_create :assign_customer_if_admin
+
   def full_name
     "#{name} #{last_name}"
   end
@@ -66,4 +68,9 @@ class User < ActiveRecord::Base
     errors.add(:password_confirmation, 'wrong confirmation') unless valid
     valid
   end
+
+  def assign_customer_if_admin
+    update(customer_id: 1) if admin?
+  end
+
 end
