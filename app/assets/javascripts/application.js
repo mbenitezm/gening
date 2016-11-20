@@ -16,7 +16,6 @@
 //= require twitter/bootstrap
 //= require_tree .
 
-
 function initialize_datatables(){
   $('.datatable').DataTable({
     "language": {
